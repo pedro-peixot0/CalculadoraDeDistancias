@@ -65,7 +65,7 @@ consegue calcular distância de um caminho definido pelo usuário.
                     continue;
                 }
 
-                caminho.Add(proximaCidade - 1);
+                caminho.Add(proximaCidade);
                 stringCaminho += $" {proximaCidade} -> ";
 
             }while(proximaCidade != 0);
