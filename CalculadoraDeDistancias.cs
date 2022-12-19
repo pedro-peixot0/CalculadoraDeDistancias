@@ -17,7 +17,7 @@ consegue calcular distância de um caminho definido pelo usuário.
     }
     public partial class CalculadoraDeDistancias
     {
-        decimal[,] arrayDistancias;
+        private decimal[][] arrayDistancias;
 
         public CalculadoraDeDistancias()
         {
@@ -26,21 +26,22 @@ consegue calcular distância de um caminho definido pelo usuário.
                 inputType: "int"
             );
 
-            arrayDistancias = new decimal[tamanhoArray,tamanhoArray];
+            arrayDistancias = new decimal[tamanhoArray][];
 
             for (int i=0; i<tamanhoArray; i++)
             {
+                arrayDistancias[i] = new decimal[tamanhoArray];
                 for (int j=0; j< tamanhoArray; j++)
                 {
                     if (i == j)
-                        arrayDistancias[i,j] = 0M;
+                        arrayDistancias[i][j] = 0M;
                     else if (j > i)
-                        arrayDistancias[i,j] = ReceberInput(
+                        arrayDistancias[i][j] = ReceberInput(
                             message: $"\nPor favor, entre a distancia entre a cidade {i+1} e a cidade {j+1}:",
                             inputType: "decimal"
                         );
                     else
-                        arrayDistancias[i,j] = arrayDistancias[j,i];
+                        arrayDistancias[i][j] = arrayDistancias[j][i];
                 }
             }
         }
@@ -77,10 +78,10 @@ consegue calcular distância de um caminho definido pelo usuário.
             
             for (int i=1; i<caminho.Count; i++)
             {   
-                distancia += this.arrayDistancias[
-                    (int) caminho[i], 
-                    (int) caminho[i-1]
-                ];
+                distancia += this.arrayDistancias
+                [(int) caminho[i]]
+                [(int) caminho[i-1]]
+                ;
             }
 
             Console.WriteLine($"\n A distancia total do caminho definido é de {distancia}");
