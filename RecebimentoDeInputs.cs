@@ -5,6 +5,18 @@ namespace Questao1
 {
     public partial class CalculadoraDeDistancias
     {
+        public decimal[][] LerArquivo(string arquivo)
+        {
+            var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var filePath = Path.Combine(desktopPath, arquivo);
+            
+            decimal[][] matrix = File.ReadAllLines(filePath)
+                .Select(
+                    linha => linha.Split(',').Select(item => Decimal.Parse(item)).ToArray()
+                ).ToArray();
+
+            return matrix;
+        }
         static decimal ReceberInput(string message, string inputType)
         {
             //Controle do do separador decimal
