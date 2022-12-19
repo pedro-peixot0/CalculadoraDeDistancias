@@ -78,8 +78,8 @@ consegue calcular distância de um caminho definido pelo usuário.
             for (int i=1; i<caminho.Count; i++)
             {   
                 distancia += this.arrayDistancias[
-                    (int) caminho[i], 
-                    (int) caminho[i-1]
+                    (int) (caminho[i]-1), 
+                    (int) (caminho[i-1]-1)
                 ];
             }
 
