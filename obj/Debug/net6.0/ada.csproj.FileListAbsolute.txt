@@ -1,0 +1,17 @@
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/bin/Debug/net6.0/ada
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/bin/Debug/net6.0/ada.deps.json
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/bin/Debug/net6.0/ada.runtimeconfig.json
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/bin/Debug/net6.0/ada.dll
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/bin/Debug/net6.0/ada.pdb
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.csproj.AssemblyReference.cache
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.GeneratedMSBuildEditorConfig.editorconfig
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.AssemblyInfoInputs.cache
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.AssemblyInfo.cs
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.csproj.CoreCompileInputs.cache
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.dll
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/refint/ada.dll
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.pdb
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.genruntimeconfig.cache
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ref/ada.dll
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/bin/Debug/net6.0/CsvHelper.dll
+/Users/pedro.ferreira/Documents/Programas pessoais/ada/obj/Debug/net6.0/ada.csproj.CopyComplete

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ryTMs3ASLi6ofXK2Kl7Al7YK1YgzLTUducJwVkvY/TnmaPVrXGd3Uil0pu/SBVFJaBk7Vi0SQIEzkxvtKerLPw==",
+  "success": true,
+  "projectFilePath": "/Users/pedro.ferreira/Documents/Programas pessoais/ada/ada.csproj",
+  "expectedPackageFiles": [
+    "/Users/pedro.ferreira/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
