@@ -11,8 +11,8 @@ namespace Questao1
 Olá, este programa recebe as distancias entre cidades e, com elas,
 consegue calcular distância de um caminho definido pelo usuário.
 ");
-            var tabela = new CalculadoraDeDistancias("txt");
-            tabela.CalcularDistanciaCaminho("txt");
+            var tabela = new CalculadoraDeDistancias("default");
+            tabela.CalcularDistanciaCaminho("default");
         }
     }
     public partial class CalculadoraDeDistancias
@@ -85,7 +85,6 @@ consegue calcular distância de um caminho definido pelo usuário.
 
                 }while(proximaCidade != 0);
             }
-            
 
             Console.Clear();
             Console.WriteLine($"O caminho escolhido foi: \n {string.Join(" -> ",caminho)}");

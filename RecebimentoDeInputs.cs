@@ -1,11 +1,12 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Questao1
 {
     public partial class CalculadoraDeDistancias
     {
-        public decimal[][] LerArquivo(string arquivo)
+        private decimal[][] LerArquivo(string arquivo)
         {
             var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var filePath = Path.Combine(desktopPath, arquivo);
@@ -17,7 +18,7 @@ namespace Questao1
 
             return matrix;
         }
-        static decimal ReceberInput(string message, string inputType)
+        private decimal ReceberInput(string message, string inputType)
         {
             //Controle do do separador decimal
             char decimalChar = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
@@ -74,7 +75,7 @@ namespace Questao1
             return inputDecimal; 
         }
 
-        static decimal ConverterInput(List<char> input)
+        private decimal ConverterInput(List<char> input)
         {
             string inputString = new string(input.ToArray());
             inputString = inputString == "" ? "0" : inputString;
