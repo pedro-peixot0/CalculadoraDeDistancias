@@ -6,7 +6,55 @@ namespace Questao1
 {
     public partial class CalculadoraDeDistancias
     {
-        private decimal[][] LerArquivo(string arquivo)
+        public void ReceberCaminho(string tipoInput)
+        {
+            if (tipoInput == "csv")
+                listaCaminho = LerArquivoCsv("caminho.txt")[0].ToList();
+            else if (tipoInput == "csvhelper")
+                listaCaminho = LerArquivoComCsvHelper("caminho.txt")[0].ToList();
+            else if (tipoInput == "default")
+                listaCaminho = ReceberTabelaCaminhoManualmente();
+            else
+                throw new ArgumentException($"{tipoInput} is not a valid argument");
+        }
+        public void ReceberTabelaDistancias(string tipoInput)
+        {
+            if (tipoInput == "csv")
+                arrayDistancias = LerArquivoCsv("matriz.txt");
+            else if (tipoInput == "csvhelper")
+                arrayDistancias = LerArquivoComCsvHelper("matriz.txt");
+            else if (tipoInput == "default")
+                arrayDistancias = ReceberTabelaDistanciasManualmente();
+            else
+                throw new ArgumentException($"{tipoInput} is not a valid argument");
+        }
+        //arquivos precisam estar no desktop
+        private decimal[][] LerArquivoComCsvHelper(string arquivo)
+        {
+            var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var filePath = Path.Combine(desktopPath, arquivo);
+
+            var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture){HasHeaderRecord = false};
+            using var reader = new StreamReader(filePath);
+            using var csv = new CsvParser(reader, csvConfig);
+                
+            if(!csv.Read())
+                throw new ArgumentException("csv file poorly formatted");
+            
+            var numColunas = csv.Record.Length;
+            decimal[][] cities = new decimal[numColunas][];
+
+            for(int i=0; i<numColunas; i++)
+            {
+                cities[i] = csv.Record.Select(decimal.Parse).ToArray();
+                if(!csv.Read())
+                    break;
+            }
+
+            return cities;
+        }
+        //arquivos precisam estar no desktop
+        private decimal[][] LerArquivoCsv(string arquivo)
         {
             var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var filePath = Path.Combine(desktopPath, arquivo);
@@ -17,6 +65,62 @@ namespace Questao1
                 ).ToArray();
 
             return matrix;
+        }
+        private decimal[][] ReceberTabelaDistanciasManualmente()
+        {
+            int tamanhoArray = (int) ReceberInput(
+                message: "Por favor, comece entrando a quantidade de cidades:",
+                inputType: "int"
+            );
+
+            arrayDistancias = new decimal[tamanhoArray][];
+
+            for (int i=0; i<tamanhoArray; i++)
+            {
+                arrayDistancias[i] = new decimal[tamanhoArray];
+                for (int j=0; j< tamanhoArray; j++)
+                {
+                    if (i == j)
+                        arrayDistancias[i][j] = 0M;
+                    else if (j > i)
+                        arrayDistancias[i][j] = ReceberInput(
+                            message: $"\nPor favor, entre a distancia entre a cidade {i+1} e a cidade {j+1}:",
+                            inputType: "decimal"
+                        );
+                    else
+                        arrayDistancias[i][j] = arrayDistancias[j][i];
+                }
+            }
+
+            return arrayDistancias;
+        }
+        private List<decimal> ReceberTabelaCaminhoManualmente ()
+        {
+            List<decimal> caminho = new List<decimal>{};
+            string stringCaminho = "Início -> ";
+            decimal proximaCidade;
+            
+            do{
+                proximaCidade = ReceberInput(
+                message: $"\n Por favor, entre a próxima cidade a ser visitada ou '0' para sair: \n {stringCaminho}",
+                inputType: "int"
+                );
+                //while loop pegando erros
+
+                if (proximaCidade == 0)
+                    break;
+                else if (proximaCidade > arrayDistancias.GetLength(0))
+                {
+                    Console.WriteLine($"\n\n {proximaCidade} não é o número de uma cidade válida!");
+                    continue;
+                }
+
+                caminho.Add(proximaCidade);
+                stringCaminho += $" {proximaCidade} -> ";
+
+            }while(proximaCidade != 0);
+
+            return caminho;
         }
         private decimal ReceberInput(string message, string inputType)
         {
@@ -74,7 +178,6 @@ namespace Questao1
             inputDecimal = ConverterInput(listaInputs);
             return inputDecimal; 
         }
-
         private decimal ConverterInput(List<char> input)
         {
             string inputString = new string(input.ToArray());
