@@ -24,6 +24,7 @@ namespace Questao1
             else
                 throw new ArgumentException($"{tipoInput} is not a valid argument");
         }
+        
         //arquivos precisam estar no desktop
         private decimal[][] LerArquivoCsv(string arquivo)
         {

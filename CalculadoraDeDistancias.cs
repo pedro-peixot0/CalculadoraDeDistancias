@@ -8,8 +8,8 @@ namespace Questao1
         static void Main(string[] args)
         {    
             var tabela = new CalculadoraDeDistancias(
-                tipoInputTabelaDistancias: "csv",
-                tipoInputCaminho:"csv"
+                tipoInputTabelaDistancias: "csvhelper",
+                tipoInputCaminho:"csvhelper"
             );
 
             tabela.CalcularDistanciaCaminho();
@@ -24,7 +24,7 @@ consegue calcular distância de um caminho definido pelo usuário.
         private decimal[][] arrayDistancias;
         private List<decimal> listaCaminho;
   
-        //Os argumentos podem ser: "csv","default"
+        //Os argumentos podem ser: "csv","csvhelper","default"
         public CalculadoraDeDistancias(string tipoInputTabelaDistancias = "default", string tipoInputCaminho = "default")
         {
             Console.WriteLine(this.mensagemInicial);
