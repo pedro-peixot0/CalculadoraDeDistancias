@@ -8,8 +8,8 @@ namespace Questao1
         static void Main(string[] args)
         {    
             var tabela = new CalculadoraDeDistancias(
-                tipoInputTabelaDistancias: "csvhelper",
-                tipoInputCaminho:"csvhelper"
+                tipoInputTabelaDistancias: "csv",
+                tipoInputCaminho:"csv"
             );
 
             tabela.CalcularDistanciaCaminho();
