@@ -1,11 +1,66 @@
-﻿using System;
 using System.Globalization;
 
 namespace Questao1
 {
     public partial class CalculadoraDeDistancias
     {
-        static decimal ReceberInput(string message, string inputType)
+        private decimal[][] ReceberTabelaDistanciasManualmente()
+        {
+            int tamanhoArray = (int) ReceberInput(
+                message: "Por favor, comece entrando a quantidade de cidades:",
+                inputType: "int"
+            );
+
+            arrayDistancias = new decimal[tamanhoArray][];
+
+            for (int i=0; i<tamanhoArray; i++)
+            {
+                arrayDistancias[i] = new decimal[tamanhoArray];
+                for (int j=0; j< tamanhoArray; j++)
+                {
+                    if (i == j)
+                        arrayDistancias[i][j] = 0M;
+                    else if (j > i)
+                        arrayDistancias[i][j] = ReceberInput(
+                            message: $"\nPor favor, entre a distancia entre a cidade {i+1} e a cidade {j+1}:",
+                            inputType: "decimal"
+                        );
+                    else
+                        arrayDistancias[i][j] = arrayDistancias[j][i];
+                }
+            }
+
+            return arrayDistancias;
+        }
+        private List<decimal> ReceberTabelaCaminhoManualmente ()
+        {
+            List<decimal> caminho = new List<decimal>{};
+            string stringCaminho = "Início -> ";
+            decimal proximaCidade;
+            
+            do{
+                proximaCidade = ReceberInput(
+                message: $"\n Por favor, entre a próxima cidade a ser visitada ou '0' para sair: \n {stringCaminho}",
+                inputType: "int"
+                );
+                //while loop pegando erros
+
+                if (proximaCidade == 0)
+                    break;
+                else if (proximaCidade > arrayDistancias.GetLength(0))
+                {
+                    Console.WriteLine($"\n\n {proximaCidade} não é o número de uma cidade válida!");
+                    continue;
+                }
+
+                caminho.Add(proximaCidade);
+                stringCaminho += $" {proximaCidade} -> ";
+
+            }while(proximaCidade != 0);
+
+            return caminho;
+        }
+        private decimal ReceberInput(string message, string inputType)
         {
             //Controle do do separador decimal
             char decimalChar = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
@@ -61,8 +116,7 @@ namespace Questao1
             inputDecimal = ConverterInput(listaInputs);
             return inputDecimal; 
         }
-
-        static decimal ConverterInput(List<char> input)
+        private decimal ConverterInput(List<char> input)
         {
             string inputString = new string(input.ToArray());
             inputString = inputString == "" ? "0" : inputString;
