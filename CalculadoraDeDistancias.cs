@@ -20,8 +20,8 @@ consegue calcular distância de um caminho definido pelo usuário.
         private decimal[][] arrayDistancias;
         private List<decimal> listaCaminho;
   
-        //Atualmente essa função só recebe o argumento "default", porém está estruturada de forma poder receber outros métodos futuramente
-        public CalculadoraDeDistancias(string tipoInputTabelaDistancias = "default", string tipoInputCaminho = "default")
+
+        public CalculadoraDeDistancias()
         {
             Console.WriteLine(this.mensagemInicial);
             arrayDistancias = ReceberTabelaDistanciasManualmente();
